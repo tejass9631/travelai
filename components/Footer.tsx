@@ -1,95 +1,86 @@
 'use client'
 
 import Link from 'next/link'
+import { Compass } from 'lucide-react'
 
 export default function Footer() {
   return (
-    <footer className="bg-gray-900 text-white py-12">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid md:grid-cols-4 gap-8 mb-8">
-          {/* Company */}
+    <footer className="bg-slate-950 py-12 text-white">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="mb-8 grid gap-8 md:grid-cols-4">
           <div>
-            <h3 className="font-bold text-lg mb-4">TravelAI</h3>
-            <p className="text-gray-400 text-sm">
-              Discover, plan, and book your perfect trip with AI-powered recommendations.
+            <div className="mb-4 flex items-center gap-2">
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-cyan-400 text-slate-950">
+                <Compass size={21} />
+              </div>
+              <h3 className="text-lg font-bold">TravelAI</h3>
+            </div>
+            <p className="text-sm leading-6 text-gray-400">
+              Discover, plan, and book smarter trips with immersive AI-powered recommendations.
             </p>
           </div>
 
-          {/* Explore */}
           <div>
-            <h4 className="font-semibold mb-4">Explore</h4>
+            <h4 className="mb-4 font-semibold">Explore</h4>
             <ul className="space-y-2 text-sm text-gray-400">
               <li>
-                <Link href="/explore" className="hover:text-white transition">
+                <Link href="/explore" className="transition hover:text-white">
                   Destinations
                 </Link>
               </li>
               <li>
-                <Link href="/hotels" className="hover:text-white transition">
+                <Link href="/hotels" className="transition hover:text-white">
                   Hotels
                 </Link>
               </li>
               <li>
-                <Link href="/trending" className="hover:text-white transition">
-                  Trending
+                <Link href="/ai-planner" className="transition hover:text-white">
+                  AI Planner
                 </Link>
               </li>
             </ul>
           </div>
 
-          {/* Help */}
           <div>
-            <h4 className="font-semibold mb-4">Help</h4>
+            <h4 className="mb-4 font-semibold">Plan</h4>
             <ul className="space-y-2 text-sm text-gray-400">
               <li>
-                <a href="#" className="hover:text-white transition">
-                  Contact Us
-                </a>
+                <Link href="/budget" className="transition hover:text-white">
+                  Budget
+                </Link>
               </li>
               <li>
-                <a href="#" className="hover:text-white transition">
-                  FAQ
-                </a>
+                <Link href="/trips" className="transition hover:text-white">
+                  My Trips
+                </Link>
               </li>
               <li>
-                <a href="#" className="hover:text-white transition">
+                <a href="#" className="transition hover:text-white">
                   Support
                 </a>
               </li>
             </ul>
           </div>
 
-          {/* Legal */}
           <div>
-            <h4 className="font-semibold mb-4">Legal</h4>
-            <ul className="space-y-2 text-sm text-gray-400">
-              <li>
-                <a href="#" className="hover:text-white transition">
-                  Privacy Policy
+            <h4 className="mb-4 font-semibold">Social</h4>
+            <div className="flex gap-3">
+              {['X', 'FB', 'IG'].map((item) => (
+                <a
+                  key={item}
+                  href="#"
+                  className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 text-sm font-bold text-gray-300 transition hover:border-cyan-300 hover:text-cyan-300"
+                >
+                  {item}
                 </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-white transition">
-                  Terms of Service
-                </a>
-              </li>
-            </ul>
+              ))}
+            </div>
           </div>
         </div>
 
-        <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-gray-400 text-sm">© 2024 TravelAI. All rights reserved.</p>
-          <div className="flex gap-6 mt-4 md:mt-0">
-            <a href="#" className="text-gray-400 hover:text-white transition">
-              Twitter
-            </a>
-            <a href="#" className="text-gray-400 hover:text-white transition">
-              Facebook
-            </a>
-            <a href="#" className="text-gray-400 hover:text-white transition">
-              Instagram
-            </a>
-          </div>
+        <div className="flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 md:flex-row">
+          <p className="text-sm text-gray-400">Copyright 2026 TravelAI. All rights reserved.</p>
+          <p className="text-sm text-gray-500">Built for cinematic travel planning.</p>
         </div>
       </div>
     </footer>

@@ -16,7 +16,8 @@ html {
 
 body {
   font-family: 'Inter', sans-serif;
-  @apply text-gray-900;
+  @apply text-gray-900 bg-white;
+  text-rendering: geometricPrecision;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -43,6 +44,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .card {
   @apply bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-shadow p-6;
+  transform-style: preserve-3d;
 }
 
 .input-field {
@@ -51,6 +53,22 @@ h1, h2, h3, h4, h5, h6 {
 
 .section-title {
   @apply text-3xl sm:text-4xl font-bold gradient-text mb-4;
+}
+
+.destination-lift {
+  perspective: 1200px;
+}
+
+.hero-noise {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+  background-size: 42px 42px;
+}
+
+::selection {
+  background: #67e8f9;
+  color: #020617;
 }
 
 /* Animations */

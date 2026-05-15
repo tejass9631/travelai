@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Star } from 'lucide-react'
+import { CalendarDays, Plane, Star, Wallet } from 'lucide-react'
 import Link from 'next/link'
 import { Destination } from '@/types'
 
@@ -12,28 +12,27 @@ interface DestinationCardProps {
 export default function DestinationCard({ destination }: DestinationCardProps) {
   return (
     <motion.div
-      whileHover={{ y: -5 }}
-      className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow"
+      whileHover={{ y: -6, rotateX: 1.5, rotateY: -1.5 }}
+      className="overflow-hidden rounded-3xl border border-white/10 bg-white shadow-xl shadow-slate-950/10 transition-shadow hover:shadow-2xl"
     >
-      {/* Image */}
-      <div className="relative h-48 bg-gray-200 overflow-hidden">
+      <div className="relative h-52 overflow-hidden bg-gray-200">
         <img
           src={destination.image}
           alt={destination.name}
-          className="w-full h-full object-cover hover:scale-110 transition-transform duration-300"
+          className="h-full w-full object-cover transition-transform duration-500 hover:scale-110"
         />
-        <div className="absolute top-4 right-4 bg-warm text-white px-3 py-1 rounded-full text-sm font-semibold">
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent" />
+        <div className="absolute right-4 top-4 rounded-full bg-orange-500 px-3 py-1 text-sm font-semibold text-white shadow-lg">
           {destination.category}
+        </div>
+        <div className="absolute bottom-4 left-4 text-white">
+          <h3 className="text-2xl font-bold">{destination.name}</h3>
+          <p className="text-sm text-white/80">{destination.country}</p>
         </div>
       </div>
 
-      {/* Content */}
       <div className="p-6">
-        <h3 className="text-xl font-bold text-gray-900 mb-2">{destination.name}</h3>
-        <p className="text-sm text-gray-600 mb-4">{destination.country}</p>
-
-        {/* Rating */}
-        <div className="flex items-center gap-2 mb-4">
+        <div className="mb-4 flex items-center gap-2">
           <div className="flex items-center">
             {[...Array(5)].map((_, i) => (
               <Star
@@ -48,16 +47,25 @@ export default function DestinationCard({ destination }: DestinationCardProps) {
           </span>
         </div>
 
-        {/* Details */}
-        <div className="space-y-2 mb-4 text-sm text-gray-600">
-          <p>💰 Budget: ₹{destination.estimatedBudget.toLocaleString()}</p>
-          <p>🌤️ {destination.bestSeason}</p>
-          <p>✈️ Visa: {destination.visaRequired ? 'Required' : 'Not Required'}</p>
+        <p className="mb-4 min-h-[48px] text-sm leading-6 text-gray-600">{destination.description}</p>
+
+        <div className="mb-5 space-y-2 text-sm text-gray-600">
+          <p className="flex items-center gap-2">
+            <Wallet size={16} className="text-cyan-600" />
+            Budget: INR {destination.estimatedBudget.toLocaleString()}
+          </p>
+          <p className="flex items-center gap-2">
+            <CalendarDays size={16} className="text-orange-500" />
+            {destination.bestSeason}
+          </p>
+          <p className="flex items-center gap-2">
+            <Plane size={16} className="text-lime-600" />
+            Visa: {destination.visaRequired ? 'Required' : 'Not Required'}
+          </p>
         </div>
 
-        {/* CTA */}
         <Link href={`/destination/${destination.id}`}>
-          <button className="w-full bg-gradient-to-r from-primary-500 to-accent-500 text-white py-2 rounded-lg font-semibold hover:shadow-lg transition-shadow">
+          <button className="w-full rounded-xl bg-slate-950 py-3 font-semibold text-white transition hover:bg-cyan-600">
             Explore Now
           </button>
         </Link>
