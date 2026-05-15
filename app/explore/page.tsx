@@ -2,7 +2,6 @@
 
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { Input, Loader } from 'lucide-react'
 import DestinationCard from '@/components/DestinationCard'
 import { mockDestinations } from '@/lib/mockData'
 import { TravelService } from '@/lib/travelService'

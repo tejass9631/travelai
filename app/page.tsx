@@ -4,14 +4,17 @@ import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { Search, Plane, MapPin, Users, Calendar } from 'lucide-react'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import DestinationCard from '@/components/DestinationCard'
 import AITravelChat from '@/components/AITravelChat'
 import { mockDestinations } from '@/lib/mockData'
 import { TravelService } from '@/lib/travelService'
 import { useSearchStore } from '@/store'
+import type { Destination } from '@/types'
 
 export default function Home() {
-  const [trendingDestinations, setTrendingDestinations] = useState([])
+  const router = useRouter()
+  const [trendingDestinations, setTrendingDestinations] = useState<Destination[]>([])
   const { destination, setSearch } = useSearchStore()
   const [searchQuery, setSearchQuery] = useState('')
 
@@ -23,8 +26,7 @@ export default function Home() {
   const handleSearch = () => {
     if (searchQuery.trim()) {
       setSearch({ destination: searchQuery })
-      // Redirect to explore page
-      window.location.href = '/explore?search=' + searchQuery
+      router.push(`/explore?search=${encodeURIComponent(searchQuery)}`)
     }
   }
 

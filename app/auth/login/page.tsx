@@ -4,9 +4,11 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Mail, Lock, Github } from 'lucide-react'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import { useAuthStore } from '@/store'
 
 export default function LoginPage() {
+  const router = useRouter()
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -48,7 +50,7 @@ export default function LoginPage() {
       setAuthLoading(false)
       setLoading(false)
       alert('Logged in successfully!')
-      window.location.href = '/'
+      router.push('/')
     }, 1500)
   }
 
@@ -139,7 +141,7 @@ export default function LoginPage() {
 
           {/* Signup Link */}
           <p className="text-center text-gray-600 mt-6">
-            Don't have an account?{' '}
+            Don&apos;t have an account?{' '}
             <Link href="/auth/signup" className="text-primary-600 font-semibold hover:underline">
               Sign Up
             </Link>

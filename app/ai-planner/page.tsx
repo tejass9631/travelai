@@ -4,7 +4,29 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Sparkles, Download, Share2 } from 'lucide-react'
 import Link from 'next/link'
-import { mockDestinations, mockActivities } from '@/lib/mockData'
+import { mockDestinations } from '@/lib/mockData'
+
+interface GeneratedActivity {
+  time: string
+  activity: string
+  cost: number
+}
+
+interface GeneratedItineraryDay {
+  day: number
+  title: string
+  activities: GeneratedActivity[]
+}
+
+interface GeneratedItinerary {
+  title: string
+  destination: string
+  days: number
+  budget: number
+  days_breakdown: GeneratedItineraryDay[]
+  totalCost: number
+  recommendations: string[]
+}
 
 export default function AIPlannerPage() {
   const [tripData, setTripData] = useState({
@@ -15,7 +37,7 @@ export default function AIPlannerPage() {
     interests: ['Beach', 'Adventure', 'Food'],
   })
 
-  const [itinerary, setItinerary] = useState(null)
+  const [itinerary, setItinerary] = useState<GeneratedItinerary | null>(null)
   const [loading, setLoading] = useState(false)
 
   const handleInputChange = (e: React.ChangeEvent<HTMLSelectElement | HTMLInputElement>) => {
@@ -237,7 +259,7 @@ export default function AIPlannerPage() {
 
                 {/* Days */}
                 <div className="space-y-6 mb-8">
-                  {itinerary.days_breakdown.map((dayData: any, idx: number) => (
+                  {itinerary.days_breakdown.map((dayData, idx) => (
                     <motion.div
                       key={idx}
                       initial={{ opacity: 0, y: 10 }}
@@ -249,7 +271,7 @@ export default function AIPlannerPage() {
                         Day {dayData.day}: {dayData.title}
                       </h3>
                       <div className="space-y-2">
-                        {dayData.activities.map((act: any, actIdx: number) => (
+                        {dayData.activities.map((act, actIdx) => (
                           <div key={actIdx} className="flex justify-between items-start bg-gray-50 p-3 rounded-lg">
                             <div>
                               <p className="font-semibold text-gray-900">{act.time} - {act.activity}</p>

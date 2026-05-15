@@ -4,9 +4,11 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Mail, Lock, User, Github } from 'lucide-react'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import { useAuthStore } from '@/store'
 
 export default function SignupPage() {
+  const router = useRouter()
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -63,7 +65,7 @@ export default function SignupPage() {
       setAuthLoading(false)
       setLoading(false)
       alert('Account created successfully! Welcome to TravelAI.')
-      window.location.href = '/'
+      router.push('/')
     }, 1500)
   }
 
